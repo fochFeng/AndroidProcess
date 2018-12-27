@@ -74,3 +74,7 @@ git rebase
     1、分支合并，减少commit的次数
     2、合并分支commit 改写  git rebase -i HEAD~4
      rebase 是会隐藏你真实的修改记录的，所以最后呈现出来的 git 历史并不能表现你的真实操作，这点要注意。
+     
+     
+ 
+ from remote commit
