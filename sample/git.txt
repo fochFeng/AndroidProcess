@@ -88,4 +88,15 @@ git push 失败原因可能是：
 
 git reset HEAD
 
-mixed /hard / soft
+mixed [mikst] /hard / soft
+
+利用github实现多人合作程序开发的过程中，我们有时会出现错误提交的情况，此时我们希望能撤销提交操作，
+让程序回到提交前的样子，本文总结了两种解决方法：回退（reset）、反做（revert）
+
+git reset
+git reset --hard HEAD 回退 使用“git push -f”提交更改：
+此时如果用“git push”会报错，因为我们本地库HEAD指向的版本比远程库的要旧
+
+git revert
+原理： git revert的作用通过反做创建一个新的版本，这个版本的内容与我们要回退到的目标版本一样，
+但是HEAD指针是指向这个新生成的版本，而不是目标版本。
