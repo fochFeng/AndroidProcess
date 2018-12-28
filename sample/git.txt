@@ -100,3 +100,6 @@ git reset --hard HEAD 回退 使用“git push -f”提交更改：
 git revert
 原理： git revert的作用通过反做创建一个新的版本，这个版本的内容与我们要回退到的目标版本一样，
 但是HEAD指针是指向这个新生成的版本，而不是目标版本。
+
+git rebase master
+
