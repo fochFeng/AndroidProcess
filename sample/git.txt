@@ -59,7 +59,7 @@ git stash list
 作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
 一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
 另一种方式是用git stash pop，恢复的同时把stash内容也删了：
-git stash save / git stash list / git stash pop 
+git stash save / git stash list / git stash pop /git stash apply
 
 开分支有两种方式:
 一种是在远程开好分支,本地直接拉下来; git checkout -b feature-branch origin/feature-branch 
@@ -72,11 +72,19 @@ git revert 命令意思是撤销某次提交。它会产生一个新的提交，
 
 git rebase
     1、分支合并，减少commit的次数
-       在rebase的过程中，也许会出现冲突(conflict). 在这种情况，Git会停止rebase并会让你去解决 冲突；在解决完冲突后，用"git add"命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:
-       $ git rebase --continue
        $ git rebase --abort 参数来终止rebase的行动
     2、交互式rebase
        git rebase -i HEAD~4
        rebase 是会隐藏你真实的修改记录的，所以最后呈现出来的 git 历史并不能表现你的真实操作，这点要注意。
+
+git rebase 命令会把你的"mywork"分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把"mywork"分支更新 到最新的"origin"分支，最后把保存的这些补丁应用到"mywork"分支上。
+在rebase的过程中，也许会出现冲突(conflict). 在这种情况，Git会停止rebase并会让你去解决 冲突；在解决完冲突后，用"git-add"命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:
+$ git rebase --continue
+
+git push 失败原因可能是：
+   - 用 `git-commit` 的文件已经被其它人修改 先pull代码解决冲突再提交
+   - 用 `git-reset --hard` 删除了一个已经发布了的一个提交
+   - 用 `git-commit --amend` 去替换一个已经发布的提交
+   - 用 `git-rebase` 去rebase一个已经发布的提交.　
 
 
